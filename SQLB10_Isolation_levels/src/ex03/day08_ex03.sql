@@ -1,0 +1,15 @@
+-- SESSION #1
+BEGIN TRANSACTION ISOLATION LEVEL READ COMMITTED;
+SELECT * FROM pizzeria WHERE name = 'Pizza Hut';
+
+-- SESSION #2
+BEGIN TRANSACTION ISOLATION LEVEL READ COMMITTED;
+UPDATE pizzeria SET rating = 3.6 WHERE name = 'Pizza Hut';
+COMMIT;
+
+-- SESSION #1
+SELECT * FROM pizzeria WHERE name = 'Pizza Hut';
+COMMIT;
+
+-- SESSION #2 Check
+SELECT * FROM pizzeria WHERE name = 'Pizza Hut';
